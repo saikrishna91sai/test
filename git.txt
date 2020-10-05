@@ -1,0 +1,163 @@
+Git Hub:
+
+
+>> If there are 5 members in a Team to develop the code & share it among them what is the way?
+##      We can use centralisd repositry,,   Avaialble softwares in the market are Github, bitbucket, svn(sub version), TFS (Team foudation server by microsoft)
+	Developer will push the code to the Git hub and other users can take it and edit and push it again
+	As a devopps engineer we have to set up this environiment for the developers
+
+
+
+STEPS TO CREATE THE ABOVE PROCESS:
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+STEP1 : CREATE A ORGANISATION FOR EACH BUSINESS UNIT
+
+STEP2 : CREATE A REPOSITORY UNDER THAT UNIT (PRIVATE REPO) IN REAL TIME AND SHARE THAT URL AONG THE DEVELOPERS
+
+STEP3 : CREATE A TEAM AND ADD USERS UNDER IT TO PROVIDE THE ACCESS (provding individual access to the users is difficult)
+
+
+
+**NOTE : First step will execute only one time and the remining will be executed every time
+
+Interview Questions:
+
+1> Under one organisation we can create n number of repos
+2> By adding the users in public repo user can get a mail but in privte user can not get any notification
+3> For one team we can provide access to n number of repos
+4> The user who is the owner of ther organisation is called admin user and the remining add users are norma users,,, we can provide admin access to the normal user as well
+5> who provide the user details and who will create the users??  Developent tema will provide the user details and devopps team can create the users for developers
+6> Any changes can be done by the adin user only bcz seetting tb will come to the admin user only
+7> same team can work for the other repos as well
+
+
+GIT BASH PROCESS AND COMMANDS ::
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+STEP1:
+
+	1> Download the git hub to your desktop and login to it
+	2> cd ~/Desktop  >>> go desk top directory
+	3> mkdir repos  >>> create one directory whihc for the local working direcotry
+	4> cd repos >>> go to the directory
+
+	**Now we are in the direcotry we have created in our git bash the next step is to crete a local working directory 
+
+STEP 2:
+
+	1> ""git init""  >>> will create a empty repositry 
+	by executing the above command it wil create 2 directories .git(hidden) / git
+	*note:  all the git commands start with "git"
+
+
+STEP 3: 
+	
+	1> Deveop some data or code ""vi testfile"" add some data and save it
+	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	by creating a file under the local repository git wl create 3 directories which were can able to see physically
+	1> Working area		2> Staging area			3>> Local repo
+	After creating or updating any file by default it will go to the ""working area"
+
+STEP 4:
+
+	1> ""git status""
+	Above command will show the status of the git,, i f the files are in  RED colour that is the indiacation that files are in woring area,, if they are in green 
+	that means files are in staging area if the files are in local remo out put wont show any files 
+	Working directory files are called untracked files
+	staging area files are called tracked files
+
+STEP 5:
+	
+	1>Moving files from working area to staging area                   
+	""git add""
+	This command will move the files from working to staging,, there are some options with this command we can move one file at a time or n number of file or all 	files at a time.. see the below examples
+	
+	EX: If there are 2 html nd 2 java and one php file we wanto copy all of the superatly they we can do the following pattern
+		""git add *html"" will move only html
+		""git add *java"" will ove only java
+		""git add <php file name>"" will move oonly that php file
+		""git dd *"" Will move all the files 
+
+STEP 6:
+
+	1> We have to commint the files from staging area to loc repository,, this can be archived by using the below command
+	""git commit -m "commit message""
+	By using the above command it will prmpt for the user name and password 
+	we have to enter the user name and password if you are going to use the unique user in your system then configure your user and pwd globally by the below 
+	commands
+	""git config --global user.name <testuser>""
+	""git config --global user.email <registered emain>""
+	These two comands we will excute at very first time 
+	By this each developer can cretae their own repos and can make the code changes on their local repos
+
+STEP 7:
+
+	1> We have to push the code from local to remote repository now then only other developer can access the code via git hub,, for this we hvae to add the remote 	repo first by using the below command
+	""git remote add <aliasname> <Repo url taken from the git console>
+	After adding the repo we can check the avaialbble repos by using the below command
+	""git remote -v"
+	For this as well git will prmpt for the user id and password
+	After adding the remote repos successfull then we have to move the code to remote repo by using the below command
+	""git push <alias name>"" <branchname>""
+	By default code will push to mater branch only and for push command we ave to enter the pwd...
+
+################ Finished pushing the code to remote repository #################################   
+
+
+Interview question:
+
+1> How can you chek the configured global variables like user name and password in git
+Ans > ""git config --globla --list""   and we can overwrite it by ussing add command ""git config --global user.name <testuser>""
+
+
+2> Diiferent between different stages of git bash life cycle??
+Ans>>   Newly created file --> working area (untracked files) -->git add <options> --> staging area (tracked files) --> git commit --> local repository 
+	we can see this status by "git status" command
+
+
+3> How to chek the history of the commits in local repostiry?
+ANS>> 	""git log"" will show the entire commit ids and commit messges and the stats wether it pushed to remote or not 
+
+
+4> can we move specific files from local repo to remote repo??
+ANS>> No we can not control these files as there no option in ""git push"" if we use git push all the files move to remote repo,, we can archive this contol only in moving the files from working area to staging area 
+
+
+5> why git is called vcs??
+ANS>> 
+
+
+
+
+
+
+
+
+	
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
