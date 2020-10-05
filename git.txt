@@ -149,6 +149,19 @@ ANS>> We can commit the changes in that file with out using ""git add"" command 
 ANS>> By using the command ""git show commit-id""..., here commit id will be full id number or it will be part of id like 5 to 6 letters of commit id.
 
 
+9>> How to check entire configuration of git?
+ANS>> ""git config -list""
+
+10>> git log commands for specific commits?
+ANS>> ""git logs -2"" --> will show only for two commit ids
+
+11>> how to display all the files commited under that commit id?
+ANS>> ""git show --pretty="" --name-only <commit id>
+
+
+12>> 
+
+
 
       
       
