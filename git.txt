@@ -159,7 +159,10 @@ ANS>> ""git logs -2"" --> will show only for two commit ids
 ANS>> ""git show --pretty="" --name-only <commit id>
 
 
-12>> 
+12>> How to clean files in the git working directory?
+ANS>> ""git clean -f""
+
+13>> 
 
 
 
