@@ -129,7 +129,29 @@ ANS>> No we can not control these files as there no option in ""git push"" if we
 
 
 5> why git is called vcs??
-ANS>> 
+ANS>> In the git consoe you can see the commits in the left side if you go inside that one you can see the list of commits in that with different versions for each commit,, so git will maintain a unique version for each commit so it is called vcs (version control system)
+
+
+6> what are the other different version types available in the market?
+ANS>> 1> CVS : Concerrnt version control system
+      2> SVN : sub version
+      3> TFS: Team foundation server developed by microsoft
+      
+      commit id is also called version number, referance id or version number
+      
+      
+7> What happen if you edited the already existing file in the local repo?
+ANS>> We can commit the changes in that file with out using ""git add"" command to the local repository by using the below command
+	""git commit -a -m "commit message""
+	
+
+8>> How to check the infermation about the commit id?
+ANS>> By using the command ""git show commit-id""..., here commit id will be full id number or it will be part of id like 5 to 6 letters of commit id.
+
+
+
+      
+      
 
 
 
