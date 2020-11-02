@@ -188,6 +188,10 @@ RUN:
 Example: on the base os which was installed by the FROM instruction if we need to install any software like a webservers, so we have to provide the webserver installation
 command here in the RUN tag, this comand will commit in the new layer
 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Do not confuse RUN with CMD. RUN actually runs a command and commits the result; CMD does not execute anything at build time, but specifies the intended command for the image.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 CMD:
 ----------Specify a default command used to run inside the container at the time of execution
@@ -217,7 +221,8 @@ MAINTAINER <name>
 The MAINTAINER instruction allows you to set the Author field of the generated images.
 
 
-RUN
+RUN:
+###
 
 Usage:
 
@@ -227,6 +232,39 @@ RUN commands using a base image that does not contain the specified shell execut
 
 RUN ["<executable>", "<param1>", "<param2>"] (exec form)
 The default shell for the shell form can be changed using the SHELL command. >> Exmple:RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'
+
+
+LABEL:
+#####
+
+Usage:
+
+LABEL <key>=<value> [<key>=<value> ...]
+
+The LABEL instruction adds metadata to an image.
+To include spaces within a LABEL value, use quotes and backslashes as you would in command-line parsing.
+Labels are additive including LABELs in FROM images.
+If Docker encounters a label/key that already exists, the new value overrides any previous labels with identical keys.
+To view an image’s labels, use the docker inspect command. They will be under the "Labels" JSON attribute.
+
+>>docker image inspect --format='' myimage<<
+Examples:
+LABEL "com.example.vendor"="ACME Incorporated"
+LABEL multi.label1="value1" multi.label2="value2" other="value3"
+LABEL multi.label1="value1" \
+      multi.label2="value2" \
+      other="value3"
+
+EXPOSE:
+#######
+
+Usage:
+
+EXPOSE <port> [<port> ...]
+
+Informs Docker that the container listens on the specified network port(s) at runtime.
+EXPOSE does not make the ports of the container accessible to the host.
+
 
 
 
