@@ -1,0 +1,54 @@
+Q>>Work with out docker: VMs for applications
+---------- Needed host os --> hypervisor --> host os -->  binaries related to application
+
+Q>With Docker?
+-----------Docker engine on host os ---> assig binaries and libraries --> run the container
+
+Q>What is the use of docker??
+----------- To run the app quicky and less resource bcz of absent of host os
+
+Q>> What is the docker?
+----------  Docker is containerisation platfomr --> form Related packages and binaries and run them whihc are called as container---> can run in any platform
+
+
+
+Q>Resource management in VM?
+---------- in any vm per suppose if we provided 6 gb then vm use 4GB and left 2 gb free then 2 gb is waste
+---------- in docker we can use that empty space for another container
+---------- in VM for Guest os increase wait , perofrmance reduce, memorey high , stoage space high, network high absorb
+-----------in docker no guest os so no need of multiple os so it is called ligh weight
+
+
+Q>Integration with docker??
+-----------Integration in docker is Faste, Cheap and easy scalable, using docker we can setup may instances like jenkins, puppet and more
+-----------All can run in the same container or we can run them in different container which can interact with some commands
+-----------we can also scallable these containers with the docker commands
+
+
+Q>Difference between docker and docker engine?
+-------------- In docker we have 3 components that are docker client, docker host and docker repository 
+-------------- docker host + docker client = docker engine
+--------------- docker clinet >> To run the docker realted commands like run, pull , build by the user, here user will interact with the docker client to perform all these activities
+-------------- docker host >> docker host has 5 components 1> docker demon (whihc is docker service whihc is called dockerd) , 2> container 3> images 4> Network %> Storage
+-------------- docker registry >> whihc is based in cloud , by default its docker registry to store the images for security we can create a private registry
+-------------- work flow >> Docker commands -->docker demon >> docker host to create images 
+-------------- after creating the images whihc we have to run by the command called docker container 
+-------------- the saved images in the registery we can pull them and run in somany containers 
+
+
+
+Docker Consepts::
+
+Docker is a platform for developers and system admins to build, run and share applications with containers
+the use of cintainers to deploy applications is called continerisation
+
+Containerisation advantages:
+
+1> Flexible: Any type of applications can be containerised
+2>Lghtweight: Containers leverage and share the host ernal instead of insttaling the host os whihc makes more efficient in terms of system resources
+3> Portable: we can run in your local, deploy to cloud and run any where 
+4>LooselyCoupled: Containers are self sufficient and encapsulated, allowing you to replacce or upgrade one with out disturbing the others
+5>Scalable: You can increase and automatically distribute container replicas across a datacenter
+5>Secure: we an secure the docker container <pending>
+
+
