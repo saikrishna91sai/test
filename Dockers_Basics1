@@ -89,7 +89,88 @@ Some available options:
             
             unless-stopeed: restart the container wether is succeeds or fails also starts the container automatically whe deamon startup, unless the container was stopped manually
             
- h
+ 
+ -p: <host port>:<container port> : every time we have to give this while creating the container:  which expose container port by mapping it to the host port,, we can use multiple 
+     ports by using the -p option multiple times
+     
+ -rm: automatically remove the container when exits, note:: --restarts can not use along with --rm
+ 
+ --memory: used to set the memorey limit to the container
+ 
+ --memory-reservation: a soft limit on memorey usage,, container will retricted to this limit if docker detects memorey contention
+ 
+ 
+ 
+ 
+ Commands to work with the docker:
+ 
+ docker ps ----->to list the containers running
+ docker ps -a ----------->all container
+ docker start/stop/rm <container-name>
+ docker rm <image> ---------->to delete image
+ docker save image > image.tar ------------ to convert the images into tar file
+ docker load --input image.tar --------> to create the image from the tar file
+ docker version -----> to check the version
+ 
+ 
+ EXAMPLE:
+ 
+ docker run -d --name nginx --restart unless-stopped -p 8080:80 --memorey 500M --memorey-reservatio 256M nginx
+ Above comand to run the nginix container with the name nginx with the given ports/memorey/restart options
+ 
+ 
+ 
+ Docker Logging drivers:
+ 
+ Usually logging drivers are splunk ,json..etc
+ these are called plugable frame work it is used to accss the data from the containers, 
+ The Docker logging driver allows you send stdout and stderr output from your container to the host’s syslog daemon. 
+ The syslog daemon on the host will then forward the logs to Loggly
+ we can set options for these drivers for this we have to give some custominsed drivers from the existing drivers
+ for this we have to chnge the some properties in /etc/docker/deamon.json
+ to find out the drivers assigned currently by using the command docker info for specific out put
+ we can check the running driver by default it is json-file
+ under plugins we can find the some properties like Volume, Network and log.etc
+ in log option we can check the available plugins
+ to change this one change the configuration file in /etc/docker/deamon.json write the code in json to change the property
+ here we can defined the sizr and driver type
+ by deafault:
+ 
+ {
+   "log-driver": "json-file"
+   "log-opts": {
+     "max-size": "15m"
+     }
+ }
+ 
+ restart the docker to get it reflet ,, check for the ther logging drives ???
+ 
+ 
+ we can archive the above thing directly with run command at the time of creating the container with out editing the configuration file
+ 
+ docker run --log-driver json-file --log-opt max-size=5om -p 80:80nginx
+ 
+ above command will do the same for the specific container
+ Note: if we forgot to provide the port in run command the container will exit 
+ 
+ 
+ 
+ 
+ 
+ 
+ Docker File:
+ -------------Docer file is used to create a docker image
+ What is docker image:
+ -------------Which contains software to run a container along with code and images
+ How to create a docker image: 
+ ------------ By using the file Dockerfile and the "D" should be in upper case and there shoudn't be any extention for this and it would be a single name, continer and images 
+ are defined layered file systems,, each layer is different from the previous layer.
+ 
+ 
+ 
+ 
+ 
+ 
      
      
 
