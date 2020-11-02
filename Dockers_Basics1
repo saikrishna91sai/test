@@ -52,3 +52,49 @@ Containerisation advantages:
 5>Secure: we an secure the docker container <pending>
 
 
+
+Installing Docker>> Docker we can install in number of ways like yum, zip file ..etc
+
+
+Running the containers::
+------------ Runable instance of a image is called container, this container will connect with the networ
+
+Cmmand to run the command: docker run [optios] image[:tag] [command] arg
+
+Image: The container image to run,, by default it will pulled from the docker repository 
+
+
+>>>>>A Docker image is a read-only template that contains a set of instructions for creating a container that can run on the Docker platform.
+It provides a convenient way to package up applications and preconfigured server environments, 
+which you can use for your own private use or share publicly with other Docker users.<<<<
+
+
+TAG: A specific name for the tag usually we use tag
+
+command: Command to run inside the container at the time of creating
+
+Arg: Arguments to pass the when running the comand
+
+Some available options:
+
+-d : run the container in detached mode,, by using the run with out -d we can not run the in the backgroud means will move into the conatiner ater creating it so to keep the 
+     container uo and running we have to exit from the container and have to start it again to avoide this we will use detached mode whihc makes the conatiner run in the background
+ 
+ --name: we can provide specific name to our container, if we didn't providedthis name then container will assign a name to that container by deafault
+ 
+ --restart: we can specify to the container that when it has to be restarted automatically, there are some optiosn for this restart 
+            no : it is by default whihc means ti will never restart
+            on-failure: only if the contaier fails like exit with a non zero code
+            always: restart the container wether is succeeds or fails also starts the container automatically whe deamon startup we never used any wherea usualy
+            
+            unless-stopeed: restart the container wether is succeeds or fails also starts the container automatically whe deamon startup, unless the container was stopped manually
+            
+ h
+     
+     
+
+
+
+
+
+
