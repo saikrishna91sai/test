@@ -164,7 +164,79 @@ Some available options:
  -------------Which contains software to run a container along with code and images
  How to create a docker image: 
  ------------ By using the file Dockerfile and the "D" should be in upper case and there shoudn't be any extention for this and it would be a single name, continer and images 
- are defined layered file systems,, each layer is different from the previous layer.
+ are defined layered file systems,, each layer is different from the previous layer. Most of the layers are read only layer but the top layer willbe the writable layer
+ 
+ Example: per suppose if we are using the ubuntu the take this ubuntu as base image and install python and run any web application on top of it. if we need the some other version
+ with the same image then we can edit and add additional components the code in the writable layer so the top layer will almost be the writable layer,, This layered file system 
+ allow the multiple containres and images same layers should be shared to narrow the storage foot print and transfer the image and build the image quickly.
+ 
+ 
+ Dockerfile:
+ ---------- If you want to build your own images we do with the dockerfile, docker file contian a set of intructions which are used to construct a docker images whihc are also
+ called directives
+ 
+ List of directives:
+ 
+FROM: (always in upper case) 
+-----------Starts a new build stage and sets the base image,, usually must be the first directive in the Dockerfile in some cases we can place args intially
+
+ENV:
+-----------To set the environiment variables, we can refer these inside the dockerfile and can availble in the container run time.
+
+RUN:
+-----------Creats the new layer on top of the previous layer by running a comand inside that new layer and commiting the changes
+Example: on the base os which was installed by the FROM instruction if we need to install any software like a webservers, so we have to provide the webserver installation
+command here in the RUN tag, this comand will commit in the new layer
+
+
+CMD:
+----------Specify a default command used to run inside the container at the time of execution
+Example: to start the webserver we use linux command whihc we have to provide here
+
+
+More about the instruction:
+
+FROM:
+####
+Usage:
+
+FROM <image>
+FROM <image>:<tag>
+
+FROM must be the first non-comment instruction in the Dockerfile.
+FROM can appear multiple times within a single Dockerfile in order to create multiple images. Simply make a note of the last image ID output by the commit before each 
+new FROM command.
+
+
+MAINTAINER:
+##########
+
+Usage:
+
+MAINTAINER <name>
+The MAINTAINER instruction allows you to set the Author field of the generated images.
+
+
+RUN
+
+Usage:
+
+RUN <command> (shell form, the command is run in a shell, which by default is /bin/sh -c on Linux or cmd /S /C on Windows) 
+RUN commands using a base image that does not contain the specified shell executable. >> RUN echo $VERSION > image_version
+
+
+RUN ["<executable>", "<param1>", "<param2>"] (exec form)
+The default shell for the shell form can be changed using the SHELL command. >> Exmple:RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'
+
+
+
+
+
+ 
+
+
+ 
+ 
  
  
  
