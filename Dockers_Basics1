@@ -265,6 +265,65 @@ EXPOSE <port> [<port> ...]
 Informs Docker that the container listens on the specified network port(s) at runtime.
 EXPOSE does not make the ports of the container accessible to the host.
 
+Example:
+EXPOSE 80/tcp
+EXPOSE 80/udp
+we can archive the same in run time by using the -p option
+docker run -p 80:80/tcp -p 80:80/udp ...
+To set up port redirection on the host system, see using the -P flag
+
+ADD:
+###
+
+The ADD instruction copies new files, directories or remote file URLs from <src> and adds them to the filesystem of the image at the path <dest>.
+
+ADD <src> [<src> ...] <dest>
+ADD ["<src>", ... "<dest>"] (this form is required for paths containing whitespace)
+
+Wxamples
+ADD hom* /mydir/
+ADD hom?.txt /mydir/
+In the above example below, ? is replaced with any single character, e.g., “home.txt”.
+
+The <dest> is an absolute path, or a path relative to WORKDIR, into which the source will be copied inside the destination container.
+The example below uses a relative path, and adds “test.txt” to <WORKDIR>/relativeDir/:
+ADD test.txt relativeDir/
+
+
+COPY:
+#####
+
+Usage:
+
+COPY <src> [<src> ...] <dest>
+COPY ["<src>", ... "<dest>"] (this form is required for paths containing whitespace)
+
+Examples:
+COPY hom* /mydir/
+COPY hom?.txt /mydir/
+
+The <dest> is an absolute path, or a path relative to WORKDIR, into which the source will be copied inside the destination container.
+The example below uses a relative path, and adds “test.txt” to <WORKDIR>/relativeDir/:
+COPY test.txt relativeDir/
+
+Differeance between ADD and COPY:
+
+COPY and ADD are both Dockerfile instructions that serve similar purposes. They let you copy files from a specific location into a Docker image.
+COPY takes in a src and destination. It only lets you copy in a local file or directory from your host (the machine building the Docker image) into the Docker image itself.
+
+ADD lets you do that too, but it also supports 2 other sources. First, you can use a URL instead of a local file / directory. Secondly, you can extract a tar file from the 
+source directly into the destination.
+
+Exampe: 
+ADD http://example.com/big.tar.xz /usr/src/things/
+
+
+
+
+
+
+
+
 
 
 
