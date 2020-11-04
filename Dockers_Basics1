@@ -306,16 +306,100 @@ The <dest> is an absolute path, or a path relative to WORKDIR, into which the so
 The example below uses a relative path, and adds “test.txt” to <WORKDIR>/relativeDir/:
 COPY test.txt relativeDir/
 
-Differeance between ADD and COPY:
+ENTRYPOINT:
+##########
 
-COPY and ADD are both Dockerfile instructions that serve similar purposes. They let you copy files from a specific location into a Docker image.
-COPY takes in a src and destination. It only lets you copy in a local file or directory from your host (the machine building the Docker image) into the Docker image itself.
+Usage:
 
-ADD lets you do that too, but it also supports 2 other sources. First, you can use a URL instead of a local file / directory. Secondly, you can extract a tar file from the 
-source directly into the destination.
+ENTRYPOINT ["<executable>", "<param1>", "<param2>"] (exec form, preferred)
+ENTRYPOINT <command> <param1> <param2> (shell form)
+Information:
 
-Exampe: 
-ADD http://example.com/big.tar.xz /usr/src/things/
+Allows you to configure a container that will run as an executable.
+Command line arguments to docker run <image> will be appended after all elements in an exec form ENTRYPOINT and will override all elements specified using CMD.
+The shell form prevents any CMD or run command line arguments from being used, but the ENTRYPOINT will start via the shell. 
+This means the executable will not be PID 1 nor will it receive UNIX signals. Prepend exec to get around this drawback.
+Only the last ENTRYPOINT instruction in the Dockerfile will have an effect.
+
+Examples:
+ENTRYPOINT ["top", "-b"]
+ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+
+
+VOLUME:
+######
+Usage:
+
+VOLUME ["<path>", ...]
+VOLUME <path> [<path> ...]
+Creates a mount point with the specified name and marks it as holding externally mounted volumes from native host or other containers.
+The VOLUME instruction creates a mount point with the specified name and marks it as holding externally mounted volumes from native host or other containers.
+The value can be a JSON array, VOLUME ["/var/log/"], or a plain string with multiple arguments, such as VOLUME /var/log or VOLUME /var/log /var/db
+Changing the volume from within the Dockerfile: If any build steps change the data within the volume after it has been declared, those changes will be discarded.
+
+
+USER:
+####
+Usage:
+
+USER <username | UID>
+The USER instruction sets the user name or UID to use when running the image and for any RUN, CMD and ENTRYPOINT instructions that follow it in the Dockerfile.
+When the user doesn’t have a primary group then the image (or the next instructions) will be run with the root group.
+
+
+WORKDIR
+######
+Usage:
+
+WORKDIR </path/to/workdir>
+Information:
+
+Sets the working directory for any RUN, CMD, ENTRYPOINT, COPY, and ADD instructions that follow it.
+It can be used multiple times in the one Dockerfile. If a relative path is provided, it will be relative to the path of the previous WORKDIR instruction.
+
+Example:
+WORKDIR /a
+WORKDIR b
+WORKDIR c
+RUN pwd
+The output of the final pwd command in this Dockerfile would be /a/b/c.
+
+
+ARG
+###
+Usage:
+
+ARG <name>[=<default value>]
+ARG <name>[=<default value>]
+The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg <varname>=<value> flag. If a user specifies a build argument that was not defined in the Dockerfile, the build outputs a warning.
+
+Example:
+FROM busybox
+ARG user1=someuser
+ARG buildno=1
+
+Environment variables defined using the ENV instruction always override an ARG instruction of the same name.
+Docker has a set of predefined ARG variables that you can use without a corresponding ARG instruction in the Dockerfile.
+
+HTTP_PROXY and http_proxy
+HTTPS_PROXY and https_proxy
+FTP_PROXY and ftp_proxy
+NO_PROXY and no_proxy
+
+
+ONBUILD
+STOPSIGNAL
+HEALTHCHECK
+SHELL
+
+
+
+
+
+
+
+
+
 
 
 
