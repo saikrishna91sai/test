@@ -395,6 +395,89 @@ SHELL
 End of intructions:>>>>>.
 
 
+As we already discuseed docker image will be lightweight so we have to keep the docker file as light as possible by using the below points:(for developers)
+-------------------------------------------------------------------------------------------------------------------------------------------
+we can mention unwated binariies and files in .dockerignore to avoide them from storing
+multistage docker build we will provide the multiple images infermation in the single docker file
+we can use multistage build to reduce the size of the docker image, like in one docker file for first image we will create artifact and include tools for testing
+and build the image in second image include binaried and create artificat and avoid unnessesay lib and binaries
+decouple application method is to superate the application and database to increase the memory which cause the perormance increase
+we can minimize layers by using the multistaged builds
+we can sort the multiline argumnets to increase the readcapacity ... these all are the limitations for docker file
+
+
+Example docker file for nginx
+#############################
+step1: Create a docker file for simple mginx
+vi Dockerfile
+
+--------------
+#simple nginx image
+FROM ubuntu:latest                                     >> base layer 
+RUN apt-get update && apt-get install -y curl          >>layer 1
+RUN apt-get update &&                                  >>lauer 2
+CMD ["nginx", "-g", "deamon off"]                      >>command to run the nginx
+
+step2: build an image using the above docker file
+-----------command: docker build -t nginx_img .                       # here . represets that dockerfile is available in the same directory
+-----------command: docker build -t nginx_img -f <full path of the docker file>
+
+If there are any errors in the docker file we an see that in the red lines
+After executing the dockerfile we an see the successfull messages at the end if build is successfull
+
+step3: Run the docker image to create a container
+------------command : docker run --name my_nginx -d  -p 8080:80 nginx_img
+
+step3: we can check the nginix welcome page http://ip:port
+
+
+Example docker file by placinf some html content inside the nginx
+#################################################################
+
+step1: Create a docker file for simple mginx with application code
+vi Dockerfile
+
+--------------
+#simple nginx image
+FROM ubuntu:latest                                     >> base layer 
+RUN apt-get update && apt-get install -y curl          >>layer 1
+RUN apt-get update &&                                  >>lauer 2
+
+WORKDIR /var/www/html                                  >> create this directory and work as the current directory in this image
+COPY inde.html ./                                      >> here index.html from the location is copy to destination ./ here . represneds work directory
+
+#ADD inde.html ./  > this will also work same as the above copy command
+
+EXPOSE 80                                              >> expose the port inside the container
+
+CMD ["nginx", "-g", "deamon off"]                      >>command to run the nginx
+
+STOPSIGNAL SIGTERM                                     >> when user stopes the container then this signal passes to the prpcess
+
+HEALTHCHECK CMD curl localhost:80                      >> to check the health of the conatiner by that port number
+
+
+----------------------------------------------------------------------------------------------------------------------
+intervie question: in dockerrun command we have mapped container port wiht the local host, we need that not to be changes dynamically when the container the docker system
+was rebooted? we can expose prot inside the contaier and mention the same in run to make it unchanged
+----------------------------------------------------------------------------------------------------------------------
+
+step 2: build the docker file
+-----------command: docker build -t nginx_img .
+
+step3: Run the container 
+-----------docker run --name my_nginx -d  -p 8080:80 nginx_img
+
+
+
+
+
+
+
+
+
+
+
 
 
 
