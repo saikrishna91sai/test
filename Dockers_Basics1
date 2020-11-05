@@ -470,6 +470,42 @@ step3: Run the container
 
 
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Creating the efficient imgaes in real time to increase the performance with multstaging build:
+Multi staging build menas we can mention FROM tag in n number of time and can a assign a name to that base image and reuse it
+
+Example:
+#################################################################################
+FROM maven:latest AS articraft
+WORKDIR /middleware
+COPY pom.xml ./
+RUN ["mvn", "clean:, "package"]
+
+FROM apache:latest
+WORKDIR /var/www/html
+COPY --from=articraft /middleware/mavenwebapplication.war .
+#################################################################################
+
+in the above docker file we have used two FROM BASE  images and for thr first image tagged with the name articrat,, and second one is for apache and coped the war file from the 
+first stage images,, this is called multitaged build will be faster than usual builds
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
