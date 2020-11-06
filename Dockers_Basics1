@@ -553,7 +553,64 @@ sudo docker load --input image.tar         >import
 docker private registry:
 #######################
 
-Docker registry: ususally store the images and distribute them, 
+Docker registry: ususally store the images and distribute them by pulling those images
+By default docker hub is the default registry which contain n number of registry which is compleltey unsecure, docker by default will pull the images from docker hub unless we have configured a different 
+private registry
+we can create a private registry to store the images for organisation instead of making it visible to public
+
+Diiferance between public and private registry:
+In public there shouldn't be any authentication and tl certificates in private registry we can archive these two this to avid other users to access.
+To create a private registry we have to use registry image from docker hub and modify the required softwares and make it as private registry which is also called trusted regitry
+
+
+command to run docker registry container:
+
+docker run -d -p 5000:5000 --restart=always --name registry regisstry:2
+
+Note: By default registry port will listen to 5000 please don't run with the custom port number for the registry container
+
+After installation check the logs by using the command :docker logs registry
+by default the loglevel is info if we want we can change the log level by using the loglevel
+lets stop and remove the existing registry container 
+docker container stop registry && docker container rm -v registry
+here v option to remove the volume directory of the registry container
+run the container with optional env variable 
+docker run -d -p 5000:5000 --restart=always --namre registry -e REGISTRY_LOG_LEVEL=DEBUG registry:2 
+here we are setting ebvironiment vribale by the option -e
+
+For secure registry we need one file htpassword for authentication perpose 
+>>>>>>>>to do this we have to pass some flags at the time of creating the container 
+
+docker run --entrypoint htpassword registry -Bbn testuser passord@123 > /directory_to_create_file/htpasswd
+
+with the above command we can create htpasswd file with the user name and password
+if we open the file we can see the user name in the plain text and paswwordin the encrypted one
+
+>>>>>>>>>>>>>.next genereate one selfsigned certificate by the belowcommands
+
+openssl req -newkey rsa :4096 -nodes -sha -keyout <directory>/domain.key -x509 -days 365 -out /directory>/domain.crt 
+
+wih the aboe command please we can create both key and cert 
+
+>>>>>>>>Run the registry image by enabling the authentication and tls certs
+
+docker run -d -p 443:443 --restart=alwayss --name registry -v /path_to_the_certs:certs -v /path_to_the_htpassword_file:auth -e REGISTRY_HTTP_ADDR=0.0.0.0:443 -e REGISTRY_HTTP_TLS_CERTIFICATE=/pathtothe_domain.crt -e REGISTRY_HTTP_TLS_KEY=/pathtothe_domain.key -e REGISTRY_AUTH=htpassword -e "REGISTRY_AUTH_HTPASSWD_REALM=registry realm" -e RESTRY_AUTH_HTPASSWD_PATH=/path_to_the_htpasswd_file registry:2
+
+
+with the abovecommand we can make the registry containre to use the useid/pwd and tls certs
+defalt https port is 443
+by using the -v option set the volumes of the container to use the certs from the local file system
+make the REGISTRY_HTTP_ADDR as 0.0.0.0 to use this registry from any server to pull the images
+other environiment variables defined by the -e to give the cert names and htpassword files
+provided realm command to make sure the conatainer to use that htpasswd file for authentication
+
+how to check the private registry iscreated successfully or not ?? by using the curl command
+
+curl -k https://localhost:443
+if any output came that tells us we did some mistake if no output is there then all is good
+
+
+
 
 
 
