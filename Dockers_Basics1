@@ -532,7 +532,24 @@ how to archive this?? create a container and make it archive into a tar file and
 *** How to check the no of layers in the docker image?
 -----------command:  docker image history <image>
 it will list all the layers availabel in that image
-export the image nto archive forat
+run a container and make it as a tar file by using the bleo command
+docker export <container_name> > <nameof the tar file>
+command to import that conatiner into image:
+
+cat <tar file name> | docker import - imagename:<version optional>
+
+
+After imorting the image you can check the no of layers by using the history command 
+
+In the same way we can do the archive with the image as well
+
+
+docker save image > image.tar              >export
+
+sudo docker load --input image.tar         >import
+
+
+
 
 
 
