@@ -496,6 +496,47 @@ first stage images,, this is called multitaged build will be faster than usual b
 
 
 
+how to inspect docker image?
+
+docker image inspect <imagename>
+
+it will show the metadata of the image
+we can see the options provided in the docker fiels and other parameters in
+
+Deleting of images and containers>>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Note: if any docker container relatd to that imge we can't delete it which are called tageed images so we have to delete the images forcefully by using the -f option
+command to delete images:
+docker imge rm <image> or docker rmi image
+forcefull remove: docker image rm -f <image> or docker rmi -f <image>
+
+the images which are not using by the any container are called untagged images and dangling images.
+
+command to delete container:
+docker container rm <container id> or docker rm <container>
+forcefull delete: docker container rm -f <container>   or docker rm -f <container> 
+
+How to delete unused, untagged images or containers and related volumes?
+
+docker image prune
+
+will prompt for the confermaton please provide yes, it will be help full to reclaim the space.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Flattening a docker image into a signle layer:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+We already discussed multiple layers in the docker image will cause the performance reduction
+how to archive this?? create a container and make it archive into a tar file and use that images that image will be in a single leyer
+
+*** How to check the no of layers in the docker image?
+-----------command:  docker image history <image>
+it will list all the layers availabel in that image
+export the image nto archive forat
+
+
+
+
 
 
 
