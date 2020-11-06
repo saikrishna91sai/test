@@ -549,7 +549,11 @@ docker save image > image.tar              >export
 sudo docker load --input image.tar         >import
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+docker private registry:
+#######################
 
+Docker registry: ususally store the images and distribute them, 
 
 
 
