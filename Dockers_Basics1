@@ -610,6 +610,76 @@ curl -k https://localhost:443
 if any output came that tells us we did some mistake if no output is there then all is good
 
 
+docker hub: pull/push operations 
+################################
+we can pull base image from docker hub and we can edit and pull the image as per our requirements
+we can have official iages and unofficial images are there and we can see the no of downloads 
+we can get multiple versions of that image for pull option in tags option and the time when it updated and pull command also for the specific version
+by default the iages whihc were pushed to the hub wil  be public we can make it as private also in settings
+we can have webhook options as well in the docker hub
+
+
+command to serch image in hub:   docker search ubuntu
+it will show the al available images in thedocker
+
+pull one image from docker (ubuntu) ---docker pull ubuntu
+check in dicker images
+run the cntainer : docker run -itd ubuntu     >>>   i - image, t-tag, d-detached
+chek the docker ps for continer detailes like state
+
+command to enter into thecontainer : docker attach <container id>  -- will enter into the image
+here we can install required binaries whihc we did through the docker file
+ctrl+pq to quit from the continaer , you can come outwe can see the different promt guest os prompt
+commit the changes inside the container 
+docker commit container-id <username of docker>/image-name:version 
+then it will commit the changes
+check thedocker images for the newly commited images 
+push the image to docker :
+for this we have to login into the docker hub, for this we have to login hub by the command :docker login
+push the docker image to the hub::::: docker push <image-name>:tag  and we can check in our hub repository
+
+still now we have pushed the image to hub now will see how to pull the image fromour repositpry
+docker pull <imsge>:tag
+run that image by : docker run -itd -p 8080:80 <image-name>:tag
+
+better to use docker file instead of attch into hte container and install packages
+
+creqting image from docker file and update it to docker hub:
+############################################################
+
+Dockerfle
+------------
+FROM ubuntu
+MAINTAINER username-of-owner
+RUN apt update && apt-get install ubuntu -y && apt-get install httpd 
+CMD apachectl -D FOREGROUND
+EXPOSE 80
+--------------
+build the docker image
+docker build -t image_name .    :::    docker build -t <username-of-hub>/imagename:tag
+push the image to the hub
+docker login
+docker pus <image>:tag
+
+by this we can push the images and save and distribute them among n number of servers
+
+
+########################################################################################################
+image push to the private registry::
+
+there are two ways to login into private registry:  1>in-secure way        2>secure way
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
