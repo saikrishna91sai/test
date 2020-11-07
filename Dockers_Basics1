@@ -666,8 +666,86 @@ by this we can push the images and save and distribute them among n number of se
 
 ########################################################################################################
 image push to the private registry::
+########################################################################################################
 
 there are two ways to login into private registry:  1>in-secure way        2>secure way
+
+1> In secure way:
+-------------------
+edit the deamon.json configuration file in the /etc/docker.deamon.json
+
+{
+     "insecure-registires" : ["hostname-where-registry-containre running]
+}
+
+After doing the configuration please restart the docker service
+login to the private registry as
+--------------------docker login <public-hostname-proivded in the deamon.json file>
+will ask for the provide please provide the user id and password enterd in the htpasswd file
+here we have logined to the privare registry in the insecure way
+
+How to push the image to the docker private registry:
+
+-----------docker tag <image-name>:tag <hostname>/<image-name>:tag   > first tag the image with the host name of the private registry
+then push the image to private registry with the belwo caomand
+----------docker push <hostname>/image:tag
+
+we can see the docker private registry by the url???>>>>>https://myregistry.domain.com
+how to logout from the private registry
+-------------docker logout <hostname>
+then it will remove the credentials for the private registry, we can login again.
+
+
+
+
+DOCKER SWARM:
+############
+
+
+Dcoker swarm is a equivalent tool with the kubernetes to maintain the containers in the cluster form
+In this we have two components 1>swarmmanager 2>worer node
+swarm manager managing the worer nodes and also behaves as a worker node itself
+in docker swarm wecan host multiple docker hosts in real time
+docker host can be a swarm or node or can work as both
+if one worker node is unavailable then docker shedule that node tasks to other node this is a part of docker swarm which is maintained by the swarm manager.
+in one sysgle systemone ormore than one worker nodes can arrange, in real time production physical system has only one worker node
+if we want to deploy any application to the swarm we have too submitt a service defination to the manager, manager node dispatch these tasks to the wrker nodes and it self_
+will act as a worker node 
+in docker swarm mangaer is represented as leader
+what is the worker node fuunctionality? will reeie the tasks from the manager and make them to work and return the notices with the current state andstatus of the tasks
+
+how to configure the docker swarm:
+#################################
+
+Scanrio: take 3 physical system and configure master node in one box and two as reote nodes
+
+step1: Create a docker swarm enginer by usong the command:
+-----------------docker swarm init --advertise-addr <ip of the host>
+By running the above command swarm manager will intiate and also we will gat a token to add the worker nodes to this master and also display one command to add the another manager to this swarm
+--command: docker swarm join-token manager
+
+how to check the swarm info?
+we  can check with the >>>docker info<<< command 
+we could see swarm is active and node id  and also is manager : true and no of managers and nodes
+how to check the available nodes by the command>>>>>>>>>>>>>>>>docker node list<<<<<<<<<<<<<<<<<<<<<
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
