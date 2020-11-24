@@ -1,3 +1,27 @@
 Kuernetes doccumentation::
 >>>>>>>>>>>>>>>>>>>>>>>>
 
+
+
+Architechure:
+>>>>>>>>>>>>
+
+purpose of k8s: host apps in container in automated fashion as we can easily deploy as many instance easiy enale cmmunication between services
+
+
+
+kubernetes componenets:
+
+etcd: to store all the containre related infermation in a key vlue store
+sheduler : identifie the rght node to place the container on based on the container resource requirements, the worjer node capacity and any other contraints and polcies such as
+controllers: to take care of different areas 
+  types of controllers:
+  1> Node controller: Responsible for onboarding of new nodes on clusters, handling situation where nodes are unavailalble get destroy
+  2>Replication controller: ensures that desired no of pods are running on the nodes at all time as represented in the replcation group 
+  
+ API : How all the process likeshedulers and etcd..etc will communicate to each other? >>>>> kube api server
+ its theprimary management component of the serve,, which is reponsible for archestarting te all opereations with in the cluster
+ it expose the api to external users to perform management operations on the cluster
+ as well as multiple controllers to moniter the state of the k8s and make necessary chanes as required
+ 
+
