@@ -1,0 +1,142 @@
+What is python?
+Python is a high-level, general-purpose and a very popular programming language. 
+Python programming language (latest Python 3) is being used in web development, Machine Learning applications
+
+
+There are two major Python versions: Python 2 and Python 3. Both are quite different.
+
+
+Advantages :
+1) Presence of third-party modules
+2) Extensive support libraries(NumPy for numerical calculations, Pandas for data analytics etc)
+3) Open source and community development
+4) Easy to learn
+5) User-friendly data structures
+6) High-level language
+7) Dynamically typed language(No need to mention data type based on value assigned, it takes data type)
+8) Object-oriented language
+9) Portable and Interactive
+10) Portable across Operating systems
+
+
+Variables:
+ you will need to declare the type of variables but in Python you don’t need to do that. 
+ Just type in the variable and when values will be given to it, then it will automatically know whether the value given would be an int, float, or char or even a String
+ 
+ # Python program to declare variables 
+myNumber = 3
+print(myNumber) 
+
+myNumber2 = 4.5
+print(myNumber2) 
+
+myNumber ="helloworld"
+print(myNumber) 
+
+
+
+
+
+Keywords in Python
+
+
+In programming, a keyword is a “reserved word” by the language which convey a special meaning to the interpreter. It may be a command or a parameter. Keywords cannot be used as a variable name in the program snippet.
+
+Keywords in Python:  Python language also reserves some of keywords that convey special meaning. Knowledge of these is necessary part of learning this language. Below is list of keywords registered by python .
+
+False, elif, lambda,
+None, else, nonlocal,
+True, except, not,
+and, finally, or,
+as, for, pass,
+assert, from, raise,
+break, global, return,
+class, if, try,
+continue, import, while,
+def, in, with,
+del, is, yield,
+
+
+
+
+Q>> How to check if a string is keyword?
+----------------------------------------
+Python in its language defines an inbuilt module “keyword” which handles certain operations related to keywords. A function “iskeyword()” checks if a string is keyword or not.
+Returns true if a string is keyword, else returns false.
+
+
+
+#Instead of writing this massive Python code 
+#we can also code this in a different way 
+
+#Python code to demonstrate working of iskeyword() 
+
+# importing "keyword" for keyword operations 
+import keyword 
+import keyword 
+# initializing strings for testing while putting them in an array 
+keys = ["for", "while", "tanisha", "break", "sky", 
+"elif", "assert", "pulkit", "lambda", "else", "sakshar"] 
+
+for i in range(len(keys)): 
+	# checking which are keywords 
+	if keyword.iskeyword(keys[i]): 
+		print(keys[i] + " is python keyword") 
+	else: 
+		print(keys[i] + " is not a python keyword") 
+
+
+Q>> How to print list of all keywords?
+--------------------------------------
+function “kwlist()” is provided in “keyword” module which prints all the 33 python keywords
+#Python code to demonstrate working of iskeyword() 
+
+# importing "keyword" for keyword operations 
+import keyword 
+
+# printing all keywords at once using "kwlist()" 
+print ("The list of keywords is : ") 
+print (keyword.kwlist) 
+
+
+Output:
+
+The list of keywords is : 
+['False', 'None', 'True', 'and', 'as', 'assert', 'break', 'class', 
+'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 
+'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 
+'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 
+'try', 'while', 'with', 'yield']
+
+
+More on key words:
+
+1. True : This keyword is used to represent a boolean true. If a statement is true, “True” is printed.
+
+2. False : This keyword is used to represent a boolean false. If a statement is false, “False” is printed.
+True and False in python are same as 1 and 0. Example:
+
+3. None : This is a special constant used to denote a null value or a void. Its important to remember, 0, any empty container(e.g empty list) do not compute to None.
+
+
+4. and : This a logical operator in python. “and” Return the first false value .if not found return last. The truth table for “and” is depicted below.
+T-T-T//T-F-F//F-T-F//F-F-F
+
+3 and 0 returns 0
+3 and 10 returns 10
+10 or 20 or 30 or 10 or 70 returns 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
